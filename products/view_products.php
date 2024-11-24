@@ -1,5 +1,5 @@
-<?php 
-include('../partials/header.php'); 
+<?php
+include('../partials/header.php');
 
 if (isset($_POST['Submit_Filter'])) {
     $fromDate = $_POST['start_date'];
@@ -8,14 +8,12 @@ if (isset($_POST['Submit_Filter'])) {
     $from_datetime = $fromDate . " 00:00:00";
     $end_datetime = $endDate . " 23:59:59";
     $export_query = "?start=" . $_POST['start_date'] . "&end=" . $_POST['end_date'];
-
 } else {
     $fromDate = "";
     $endDate = "";
     $from_datetime = "";
     $end_datetime = "";
     $export_query = "";
-
 }
 
 
@@ -26,10 +24,10 @@ if (isset($_POST['Submit_Filter'])) {
     <div class="card-header border-0 pt-6">
         <!--begin::Card title-->
         <div class="card-title">
-        <div class="form-group d-flex align-items-center gap-2 mb-5">
-                            <label class="fs-6 fw-semibold">Search:</label>
-                            <input class="form-control form-control-solid w-250px" id="datatable_search">
-        </div>
+            <div class="form-group d-flex align-items-center gap-2 mb-5">
+                <label class="fs-6 fw-semibold">Search:</label>
+                <input class="form-control form-control-solid w-250px" id="datatable_search">
+            </div>
         </div>
         <!--begin::Card title-->
         <!--begin::Card toolbar-->
@@ -52,8 +50,8 @@ if (isset($_POST['Submit_Filter'])) {
                     <!--begin::Separator-->
                     <div class="separator border-gray-200"></div>
                     <!--end::Separator-->
-                      <!--begin::Form-->
-                      <form action="" method="POST">
+                    <!--begin::Form-->
+                    <form action="" method="POST">
                         <div class="px-7 py-5" data-select2-id="select2-data-121-t5qw">
                             <!--begin::Input group-->
                             <div class="mb-5 row">
@@ -64,7 +62,7 @@ if (isset($_POST['Submit_Filter'])) {
                                     <!--begin::Input-->
                                     <div class="card-toolbar">
                                         <input class="form-control datepicker" placeholder="Pick a date" id="start_date" name="start_date" value="<?= $fromDate; ?>" />
-                                      
+
                                     </div>
                                     <!--end::Input-->
                                 </div>
@@ -77,13 +75,13 @@ if (isset($_POST['Submit_Filter'])) {
                                     <div class="card-toolbar">
 
                                         <input class="form-control datepicker" placeholder="Pick a date" id="end_date" name="end_date" value="<?= $endDate; ?>" />
-                                        
+
                                     </div>
                                     <!--end::Input-->
                                 </div>
 
                             </div>
-                           
+
 
                             <!--begin::Actions-->
                             <div class="d-flex justify-content-end">
@@ -100,18 +98,18 @@ if (isset($_POST['Submit_Filter'])) {
                 <!--end::Menu 1-->
                 <!--end::Filter-->
                 <!--begin::Export-->
-                <a href="categories/export_categories.php?<?= $export_query; ?>" type="button" class="btn btn-light-success me-3">
+                <a href="products/export_products.php?<?= $export_query; ?>" type="button" class="btn btn-light-success me-3">
                     <i class="ki-duotone ki-exit-up fs-2">
                         <span class="path1"></span>
                         <span class="path2"></span>
                     </i>Export</a>
                 <!--end::Export-->
                 <!--begin::Add customer-->
-                <a  type="button" class="btn btn-primary add_category" data-bs-toggle="modal" data-bs-target="#kt_modal_1">Add Category</a>
+                <a type="button" class="btn btn-primary add_product" data-bs-toggle="modal" data-bs-target="#kt_modal_1">Add product</a>
                 <!--end::Add customer-->
             </div>
             <!--end::Toolbar-->
-           
+
         </div>
         <!--end::Card toolbar-->
     </div>
@@ -119,18 +117,19 @@ if (isset($_POST['Submit_Filter'])) {
     <!--begin::Card body-->
     <div class="card-body pt-0">
         <!--begin::Table-->
-        
-        <table class="table align-middle table-row-dashed fs-6 gy-5" id="category_datatable">
+
+        <table class="table align-middle table-row-dashed fs-6 gy-5" id="product_datatable">
             <thead>
                 <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
 
                     <th class="min-w-125px"> Name</th>
+                    <th class="min-w-125px"> Category </th>
                     <th class="min-w-125px">Created Date</th>
                     <th class="text-end min-w-70px">Actions</th>
                 </tr>
             </thead>
             <tbody class="fw-semibold text-gray-600">
-                
+
 
 
 
@@ -145,7 +144,7 @@ if (isset($_POST['Submit_Filter'])) {
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Add New Category</h3>
+                <h3 class="modal-title">Add New product</h3>
 
                 <!--begin::Close-->
                 <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
@@ -158,16 +157,33 @@ if (isset($_POST['Submit_Filter'])) {
                 <p>Modal body text goes here.</p>
             </div> -->
 
-            <form action="" method="POST" name="add_category_form" id="add_category_form">
+            <form action="" method="POST" name="add_product_form" id="add_product_form">
                 <div class="modal-body">
 
                     <div class="row">
-                        <div class="col-md-4 mb-5">
+                        <div class="col-md-6 mb-6">
                             <label class="required form-label">Name</label>
-                            <input type="text" name="name" id="name" class="form-control form-control-solid" placeholder="Enter Category Name">
+                            <input type="text" name="name" id="name" class="form-control form-control-solid" placeholder="Enter product Name">
                         </div>
-                        <input type="hidden" name="action" id="add_category_action" value="add_category_action">
+                        <input type="hidden" name="action" id="add_product_action" value="add_product_action">
+
+                        <div class="col-md-6 mb-6">
+                            <label class="required form-label">Category</label>
+                                <select id="category_id" name="category_id" class="form-select form-select-solid" data-control="select2">
+                                    <option disabled value="">Choose Category</option>
+
+                                        <?php
+                                        
+                                        $query = mysqli_query($connect, "select * from categories  order by id desc");
+                                        while ($r = mysqli_fetch_array($query)) {
+
+                                            echo "<option value='$r[id]'>$r[name]</option>";
+                                        }
+                                        ?>
+                                </select>
+                        </div>
                     </div>
+                    
 
 
 
@@ -177,7 +193,7 @@ if (isset($_POST['Submit_Filter'])) {
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                     <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                    <input type="submit" name="add_Category_submit" id="add_Category_submit" value="Save changes" class="btn btn-primary">
+                    <input type="submit" name="add_product_submit" id="add_product_submit" value="Save changes" class="btn btn-primary">
                 </div>
             </form>
 
@@ -187,11 +203,11 @@ if (isset($_POST['Submit_Filter'])) {
     </div>
 </div>
 
-<div class="modal fade" tabindex="-1" id="edit_category_modal">
+<div class="modal fade" tabindex="-1" id="edit_product_modal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Edit Category</h3>
+                <h3 class="modal-title">Edit product</h3>
 
                 <!--begin::Close-->
                 <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
@@ -203,14 +219,14 @@ if (isset($_POST['Submit_Filter'])) {
             <!-- <div class="modal-body">
                 <p>Modal body text goes here.</p>
             </div> -->
-            <form action="" method="POST" name="edit_category_form" id="edit_category_form">
+            <form action="" method="POST" name="edit_product_form" id="edit_product_form">
                 <div class="modal-body">
-                    <div id="edit_category_modal_body"></div>
+                    <div id="edit_product_modal_body"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                     <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                    <input type="submit" name="edit_categoty_submit" id="edit_categoty_submit" class="btn btn-primary" value="Save Changes">
+                    <input type="submit" name="edit_product_submit" id="edit_product_submit" class="btn btn-primary" value="Save Changes">
                 </div>
             </form>
 
@@ -222,7 +238,7 @@ if (isset($_POST['Submit_Filter'])) {
 <?php include('../partials/footer.php') ?>
 
 <script>
-    document.getElementById("breadcrumb").innerHTML = "Categories";
+    document.getElementById("breadcrumb").innerHTML = "products";
 </script>
 
 
@@ -233,7 +249,7 @@ if (isset($_POST['Submit_Filter'])) {
     let endDate = <?php echo json_encode($end_datetime); ?>;
 
     $(document).ready(function() {
-        table = $('#category_datatable').DataTable({
+        table = $('#product_datatable').DataTable({
             "language": {
                 "infoFiltered": "",
                 "processing": "Processing"
@@ -252,13 +268,17 @@ if (isset($_POST['Submit_Filter'])) {
                     className: "text-center",
                     "targets": [2]
                 },
-               
+                {
+                    className: "text-center",
+                    "targets": [2]
+                },
+
             ],
             ajax: {
                 type: "POST",
-                url: "serverside_data/categories.php",
+                url: "serverside_data/products.php",
                 data: {
-                    action: "fetch_categories",
+                    action: "fetch_products",
                     fromDate: fromDate,
                     endDate: endDate
                 },
@@ -278,23 +298,28 @@ if (isset($_POST['Submit_Filter'])) {
 
 
     $(document).on('click', '.edit_btn', function() {
-        var category_id = $(this).val();
+        var product_id = $(this).val();
 
-        $('#edit_category_modal_body').html('');
+        $('#edit_product_modal_body').html('');
 
         $.ajax({
             type: "POST",
-            url: "serverside_data/categories.php",
+            url: "serverside_data/products.php",
             async: false,
             data: {
-                action: "edit_category_details_action",
-                category_id: category_id
+                action: "edit_product_details_action",
+                product_id: product_id
             },
             success: function(response) {
                 // console.log(response);
-                $('#edit_category_modal_body').html(response);
-                $('#edit_category_modal').modal('show');
-                $('.off_type').select2();
+                $('#edit_product_modal_body').html(response);
+                alert("HERE");
+                $('#category_id').select2();
+                // Delay to ensure DOM is updated
+        setTimeout(function() {
+            $('#category_id').select2();
+        }, 100); // Adjust time if needed
+                $('#edit_product_modal').modal('show');
             }
         });
 
@@ -303,129 +328,141 @@ if (isset($_POST['Submit_Filter'])) {
 
 
 
-    var validator_edit = $('#edit_category_form').validate({ // initialize the plugin
+    var validator_edit = $('#edit_product_form').validate({ // initialize the plugin
         rules: {
             name: {
                 required: true,
-            }
-
-        },
-        messages: {
-            name: {
-                required: "<span class='text-danger'>Name is required</span>",
-            }
-
-
-
-        },
-
-
-    });
-
-
-    $('#edit_category_form').submit(function(e) {
-        e.preventDefault();
-
-        var form = $('#edit_category_form')[0];
-        var data = new FormData(form);
-
-        if (validator_edit.errorList.length == 0) {
-            $.ajax({
-                type: "POST",
-                url: "serverside_data/categories.php",
-                processData: false,
-                contentType: false,
-                cache: false,
-                dataType: "json",
-                data: data,
-                success: function(response) {
-                    // console.log(response);
-                    if (response.success == true) {
-                        toastr.options = {
-                            "closeButton": false,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": false,
-                            "positionClass": "toastr-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "3000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        };
-
-                        toastr.success(response.message, "Success!");
-                        $('#edit_category_modal').modal('hide');
-                        table.ajax.reload();
-
-
-                    } else if (response.success == false) {
-                        toastr.options = {
-                            "closeButton": false,
-                            "debug": false,
-                            "newestOnTop": false,
-                            "progressBar": false,
-                            "positionClass": "toastr-top-right",
-                            "preventDuplicates": false,
-                            "onclick": null,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "3000",
-                            "extendedTimeOut": "1000",
-                            "showEasing": "swing",
-                            "hideEasing": "linear",
-                            "showMethod": "fadeIn",
-                            "hideMethod": "fadeOut"
-                        };
-
-                        toastr.error(response.message, "Error!");
-                        $('#edit_category_modal').modal('hide');
-                        table.ajax.reload();
-                    }
-                }
-            });
-        }
-    });
-
-
-    var validator_add = $('#add_category_form').validate({ // initialize the plugin
-        rules: {
-            name: {
+            },
+            category_id: {
                 required: true,
             }
+
         },
         messages: {
             name: {
                 required: "<span class='text-danger'>Name is required</span>",
             },
-           
+            category_id: {
+                required: "<span class='text-danger'>Category is required</span>",
+            }
+
+
+
         },
 
 
     });
 
-    $(document).on('click', '.add_category', function() {
-        const form_details = $('#add_category_form');
+
+    $('#edit_product_form').submit(function(e) {
+        e.preventDefault();
+
+        var form = $('#edit_product_form')[0];
+        var data = new FormData(form);
+
+        if (validator_edit.errorList.length == 0) {
+            $.ajax({
+                type: "POST",
+                url: "serverside_data/products.php",
+                processData: false,
+                contentType: false,
+                cache: false,
+                dataType: "json",
+                data: data,
+                success: function(response) {
+                    // console.log(response);
+                    if (response.success == true) {
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toastr-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "3000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        };
+
+                        toastr.success(response.message, "Success!");
+                        $('#edit_product_modal').modal('hide');
+                        table.ajax.reload();
+
+
+                    } else if (response.success == false) {
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toastr-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "3000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        };
+
+                        toastr.error(response.message, "Error!");
+                        $('#edit_product_modal').modal('hide');
+                        table.ajax.reload();
+                    }
+                }
+            });
+        }
+    });
+
+
+    var validator_add = $('#add_product_form').validate({ // initialize the plugin
+        rules: {
+            name: {
+                required: true,
+            },
+            category_id: {
+                required: true,
+            }
+
+        },
+        messages: {
+            name: {
+                required: "<span class='text-danger'>Name is required</span>",
+            },
+            category_id: {
+                required: "<span class='text-danger'>Category is required</span>",
+            }
+        },
+
+
+    });
+
+    $(document).on('click', '.add_product', function() {
+        const form_details = $('#add_product_form');
 
         form_details.validate().resetForm();
     });
 
 
-    $('#add_category_form').submit(function(e) {
+    $('#add_product_form').submit(function(e) {
         e.preventDefault();
 
-        var form = $('#add_category_form')[0];
+        var form = $('#add_product_form')[0];
         var data = new FormData(form);
 
         if (validator_add.errorList.length == 0) {
             $.ajax({
                 type: "POST",
-                url: "serverside_data/categories.php",
+                url: "serverside_data/products.php",
                 processData: false,
                 contentType: false,
                 cache: false,
@@ -454,7 +491,7 @@ if (isset($_POST['Submit_Filter'])) {
 
                         toastr.success(response.message, "Success!");
 
-                        const form_details = $('#add_category_form');
+                        const form_details = $('#add_product_form');
 
                         form_details.validate().resetForm();
 
@@ -483,7 +520,7 @@ if (isset($_POST['Submit_Filter'])) {
 
                         toastr.error(response.message, "Error!");
 
-                        const form_details = $('#add_category_form');
+                        const form_details = $('#add_product_form');
 
                         form_details.validate().resetForm();
 
@@ -498,10 +535,10 @@ if (isset($_POST['Submit_Filter'])) {
 
 
 
-    $(document).on('click', '.delete_category', function() {
-        var category_id = $(this).attr("data-numberId");
+    $(document).on('click', '.delete_product', function() {
+        var product_id = $(this).attr("data-numberId");
 
-        $('.delete_category').prop('disabled', true);
+        $('.delete_product').prop('disabled', true);
 
 
         const swalWithBootstrapButtons = Swal.mixin({
@@ -525,10 +562,10 @@ if (isset($_POST['Submit_Filter'])) {
 
                 $.ajax({
                     type: "POST",
-                    url: "serverside_data/categories.php",
+                    url: "serverside_data/products.php",
                     data: {
-                        action: "delete_category_action",
-                        category_id: category_id,
+                        action: "delete_product_action",
+                        product_id: product_id,
                     },
                     success: function(response) {
                         // console.log(response);
@@ -537,7 +574,7 @@ if (isset($_POST['Submit_Filter'])) {
 
                             swalWithBootstrapButtons.fire(
                                 'Deleted!',
-                                'Your Category has been deleted.',
+                                'Your product has been deleted.',
                                 'success'
                             )
 
@@ -553,10 +590,10 @@ if (isset($_POST['Submit_Filter'])) {
                 /* Read more about handling dismissals below */
                 result.dismiss === Swal.DismissReason.cancel
             ) {
-                $('.delete_category').prop('disabled', false);
+                $('.delete_product').prop('disabled', false);
                 swalWithBootstrapButtons.fire(
                     'Cancelled',
-                    'You saved the category :)',
+                    'You saved the product :)',
                     'error'
                 )
             }
@@ -571,4 +608,3 @@ if (isset($_POST['Submit_Filter'])) {
 <script>
     $('.datepicker').flatpickr();
 </script>
-

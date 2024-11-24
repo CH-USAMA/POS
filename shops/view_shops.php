@@ -100,14 +100,14 @@ if (isset($_POST['Submit_Filter'])) {
                 <!--end::Menu 1-->
                 <!--end::Filter-->
                 <!--begin::Export-->
-                <a href="categories/export_categories.php?<?= $export_query; ?>" type="button" class="btn btn-light-success me-3">
+                <a href="shops/export_shops.php?<?= $export_query; ?>" type="button" class="btn btn-light-success me-3">
                     <i class="ki-duotone ki-exit-up fs-2">
                         <span class="path1"></span>
                         <span class="path2"></span>
                     </i>Export</a>
                 <!--end::Export-->
                 <!--begin::Add customer-->
-                <a  type="button" class="btn btn-primary add_category" data-bs-toggle="modal" data-bs-target="#kt_modal_1">Add Category</a>
+                <a  type="button" class="btn btn-primary add_shop" data-bs-toggle="modal" data-bs-target="#kt_modal_1">Add shop</a>
                 <!--end::Add customer-->
             </div>
             <!--end::Toolbar-->
@@ -120,7 +120,7 @@ if (isset($_POST['Submit_Filter'])) {
     <div class="card-body pt-0">
         <!--begin::Table-->
         
-        <table class="table align-middle table-row-dashed fs-6 gy-5" id="category_datatable">
+        <table class="table align-middle table-row-dashed fs-6 gy-5" id="shop_datatable">
             <thead>
                 <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
 
@@ -145,7 +145,7 @@ if (isset($_POST['Submit_Filter'])) {
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Add New Category</h3>
+                <h3 class="modal-title">Add New shop</h3>
 
                 <!--begin::Close-->
                 <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
@@ -158,15 +158,15 @@ if (isset($_POST['Submit_Filter'])) {
                 <p>Modal body text goes here.</p>
             </div> -->
 
-            <form action="" method="POST" name="add_category_form" id="add_category_form">
+            <form action="" method="POST" name="add_shop_form" id="add_shop_form">
                 <div class="modal-body">
 
                     <div class="row">
                         <div class="col-md-4 mb-5">
                             <label class="required form-label">Name</label>
-                            <input type="text" name="name" id="name" class="form-control form-control-solid" placeholder="Enter Category Name">
+                            <input type="text" name="name" id="name" class="form-control form-control-solid" placeholder="Enter shop Name">
                         </div>
-                        <input type="hidden" name="action" id="add_category_action" value="add_category_action">
+                        <input type="hidden" name="action" id="add_shop_action" value="add_shop_action">
                     </div>
 
 
@@ -177,7 +177,7 @@ if (isset($_POST['Submit_Filter'])) {
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                     <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                    <input type="submit" name="add_Category_submit" id="add_Category_submit" value="Save changes" class="btn btn-primary">
+                    <input type="submit" name="add_shop_submit" id="add_shop_submit" value="Save changes" class="btn btn-primary">
                 </div>
             </form>
 
@@ -187,11 +187,11 @@ if (isset($_POST['Submit_Filter'])) {
     </div>
 </div>
 
-<div class="modal fade" tabindex="-1" id="edit_category_modal">
+<div class="modal fade" tabindex="-1" id="edit_shop_modal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Edit Category</h3>
+                <h3 class="modal-title">Edit shop</h3>
 
                 <!--begin::Close-->
                 <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
@@ -203,14 +203,14 @@ if (isset($_POST['Submit_Filter'])) {
             <!-- <div class="modal-body">
                 <p>Modal body text goes here.</p>
             </div> -->
-            <form action="" method="POST" name="edit_category_form" id="edit_category_form">
+            <form action="" method="POST" name="edit_shop_form" id="edit_shop_form">
                 <div class="modal-body">
-                    <div id="edit_category_modal_body"></div>
+                    <div id="edit_shop_modal_body"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                     <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                    <input type="submit" name="edit_categoty_submit" id="edit_categoty_submit" class="btn btn-primary" value="Save Changes">
+                    <input type="submit" name="edit_shop_submit" id="edit_shop_submit" class="btn btn-primary" value="Save Changes">
                 </div>
             </form>
 
@@ -222,7 +222,7 @@ if (isset($_POST['Submit_Filter'])) {
 <?php include('../partials/footer.php') ?>
 
 <script>
-    document.getElementById("breadcrumb").innerHTML = "Categories";
+    document.getElementById("breadcrumb").innerHTML = "shops";
 </script>
 
 
@@ -233,7 +233,7 @@ if (isset($_POST['Submit_Filter'])) {
     let endDate = <?php echo json_encode($end_datetime); ?>;
 
     $(document).ready(function() {
-        table = $('#category_datatable').DataTable({
+        table = $('#shop_datatable').DataTable({
             "language": {
                 "infoFiltered": "",
                 "processing": "Processing"
@@ -256,9 +256,9 @@ if (isset($_POST['Submit_Filter'])) {
             ],
             ajax: {
                 type: "POST",
-                url: "serverside_data/categories.php",
+                url: "serverside_data/shops.php",
                 data: {
-                    action: "fetch_categories",
+                    action: "fetch_shops",
                     fromDate: fromDate,
                     endDate: endDate
                 },
@@ -278,22 +278,22 @@ if (isset($_POST['Submit_Filter'])) {
 
 
     $(document).on('click', '.edit_btn', function() {
-        var category_id = $(this).val();
+        var shop_id = $(this).val();
 
-        $('#edit_category_modal_body').html('');
+        $('#edit_shop_modal_body').html('');
 
         $.ajax({
             type: "POST",
-            url: "serverside_data/categories.php",
+            url: "serverside_data/shops.php",
             async: false,
             data: {
-                action: "edit_category_details_action",
-                category_id: category_id
+                action: "edit_shop_details_action",
+                shop_id: shop_id
             },
             success: function(response) {
                 // console.log(response);
-                $('#edit_category_modal_body').html(response);
-                $('#edit_category_modal').modal('show');
+                $('#edit_shop_modal_body').html(response);
+                $('#edit_shop_modal').modal('show');
                 $('.off_type').select2();
             }
         });
@@ -303,7 +303,7 @@ if (isset($_POST['Submit_Filter'])) {
 
 
 
-    var validator_edit = $('#edit_category_form').validate({ // initialize the plugin
+    var validator_edit = $('#edit_shop_form').validate({ // initialize the plugin
         rules: {
             name: {
                 required: true,
@@ -323,16 +323,16 @@ if (isset($_POST['Submit_Filter'])) {
     });
 
 
-    $('#edit_category_form').submit(function(e) {
+    $('#edit_shop_form').submit(function(e) {
         e.preventDefault();
 
-        var form = $('#edit_category_form')[0];
+        var form = $('#edit_shop_form')[0];
         var data = new FormData(form);
 
         if (validator_edit.errorList.length == 0) {
             $.ajax({
                 type: "POST",
-                url: "serverside_data/categories.php",
+                url: "serverside_data/shops.php",
                 processData: false,
                 contentType: false,
                 cache: false,
@@ -360,7 +360,7 @@ if (isset($_POST['Submit_Filter'])) {
                         };
 
                         toastr.success(response.message, "Success!");
-                        $('#edit_category_modal').modal('hide');
+                        $('#edit_shop_modal').modal('hide');
                         table.ajax.reload();
 
 
@@ -384,7 +384,7 @@ if (isset($_POST['Submit_Filter'])) {
                         };
 
                         toastr.error(response.message, "Error!");
-                        $('#edit_category_modal').modal('hide');
+                        $('#edit_shop_modal').modal('hide');
                         table.ajax.reload();
                     }
                 }
@@ -393,7 +393,7 @@ if (isset($_POST['Submit_Filter'])) {
     });
 
 
-    var validator_add = $('#add_category_form').validate({ // initialize the plugin
+    var validator_add = $('#add_shop_form').validate({ // initialize the plugin
         rules: {
             name: {
                 required: true,
@@ -409,23 +409,23 @@ if (isset($_POST['Submit_Filter'])) {
 
     });
 
-    $(document).on('click', '.add_category', function() {
-        const form_details = $('#add_category_form');
+    $(document).on('click', '.add_shop', function() {
+        const form_details = $('#add_shop_form');
 
         form_details.validate().resetForm();
     });
 
 
-    $('#add_category_form').submit(function(e) {
+    $('#add_shop_form').submit(function(e) {
         e.preventDefault();
 
-        var form = $('#add_category_form')[0];
+        var form = $('#add_shop_form')[0];
         var data = new FormData(form);
 
         if (validator_add.errorList.length == 0) {
             $.ajax({
                 type: "POST",
-                url: "serverside_data/categories.php",
+                url: "serverside_data/shops.php",
                 processData: false,
                 contentType: false,
                 cache: false,
@@ -454,7 +454,7 @@ if (isset($_POST['Submit_Filter'])) {
 
                         toastr.success(response.message, "Success!");
 
-                        const form_details = $('#add_category_form');
+                        const form_details = $('#add_shop_form');
 
                         form_details.validate().resetForm();
 
@@ -483,7 +483,7 @@ if (isset($_POST['Submit_Filter'])) {
 
                         toastr.error(response.message, "Error!");
 
-                        const form_details = $('#add_category_form');
+                        const form_details = $('#add_shop_form');
 
                         form_details.validate().resetForm();
 
@@ -498,10 +498,10 @@ if (isset($_POST['Submit_Filter'])) {
 
 
 
-    $(document).on('click', '.delete_category', function() {
-        var category_id = $(this).attr("data-numberId");
+    $(document).on('click', '.delete_shop', function() {
+        var shop_id = $(this).attr("data-numberId");
 
-        $('.delete_category').prop('disabled', true);
+        $('.delete_shop').prop('disabled', true);
 
 
         const swalWithBootstrapButtons = Swal.mixin({
@@ -525,10 +525,10 @@ if (isset($_POST['Submit_Filter'])) {
 
                 $.ajax({
                     type: "POST",
-                    url: "serverside_data/categories.php",
+                    url: "serverside_data/shops.php",
                     data: {
-                        action: "delete_category_action",
-                        category_id: category_id,
+                        action: "delete_shop_action",
+                        shop_id: shop_id,
                     },
                     success: function(response) {
                         // console.log(response);
@@ -537,7 +537,7 @@ if (isset($_POST['Submit_Filter'])) {
 
                             swalWithBootstrapButtons.fire(
                                 'Deleted!',
-                                'Your Category has been deleted.',
+                                'Your shop has been deleted.',
                                 'success'
                             )
 
@@ -553,10 +553,10 @@ if (isset($_POST['Submit_Filter'])) {
                 /* Read more about handling dismissals below */
                 result.dismiss === Swal.DismissReason.cancel
             ) {
-                $('.delete_category').prop('disabled', false);
+                $('.delete_shop').prop('disabled', false);
                 swalWithBootstrapButtons.fire(
                     'Cancelled',
-                    'You saved the category :)',
+                    'You saved the shop :)',
                     'error'
                 )
             }

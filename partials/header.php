@@ -1,6 +1,10 @@
 <?php
 include("../config/config.php"); 
 
+if (!isset($_SESSION['user_id'])) {
+    header('Location: /login.php');
+    exit;
+}
 ?>
 <!DOCTYPE html>
 
@@ -34,7 +38,7 @@ include("../config/config.php");
 <!--end::Head-->
 <!--begin::Body-->
 
-<body id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="false" data-kt-app-sidebar-enabled="false" data-kt-app-sidebar-fixed="false" data-kt-app-sidebar-hoverable="false" data-kt-app-sidebar-push-header="false" data-kt-app-sidebar-push-toolbar="false" data-kt-app-sidebar-push-footer="false" data-kt-app-toolbar-enabled="false" class="app-default" data-kt-app-sidebar-minimize="on">
+<body id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="true" data-kt-app-sidebar-enabled="false" data-kt-app-sidebar-fixed="false" data-kt-app-sidebar-hoverable="false" data-kt-app-sidebar-push-header="false" data-kt-app-sidebar-push-toolbar="false" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="false" class="app-default" data-kt-app-sidebar-minimize="on">
 	<!--begin::Theme mode setup on page load-->
 	<script>
 		var defaultThemeMode = "light";
@@ -85,7 +89,7 @@ include("../config/config.php");
 								<div class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
 									<!--begin:Menu link-->
 									<span class="menu-link">
-										<span class="menu-title">Dashboards</span>
+										<a href="./dashboard/dashboard.php" class="menu-title">Dashboards</a>
 										<span class="menu-arrow d-lg-none"></span>
 									</span>
 									<!--end:Menu link-->
@@ -107,7 +111,19 @@ include("../config/config.php");
 								<div class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
 									<!--begin:Menu link-->
 									<span class="menu-link">
-										<span class="menu-title">Products</span>
+										<a href="./products/view_products.php"class="menu-title">Products</a>
+										<span class="menu-arrow d-lg-none"></span>
+									</span>
+									<!--end:Menu link-->
+									
+								</div>
+								<!--end:Menu item-->
+
+								<!--begin:Menu item-->
+								<div class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+									<!--begin:Menu link-->
+									<span class="menu-link">
+										<a href="./shops/view_shops.php" class="menu-title">Shops</a>
 										<span class="menu-arrow d-lg-none"></span>
 									</span>
 									<!--end:Menu link-->
@@ -118,7 +134,7 @@ include("../config/config.php");
 								<div class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
 									<!--begin:Menu link-->
 									<span class="menu-link">
-										<span class="menu-title">Stock</span>
+										<a href="./stocks/view_stocks.php" class="menu-title">Stocks</a>
 										<span class="menu-arrow d-lg-none"></span>
 									</span>
 									<!--end:Menu link-->

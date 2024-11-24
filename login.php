@@ -3,7 +3,7 @@ include "config/config.php";
 
 
 if (isset($_SESSION['user_id'])) {
-    header('Location: dashboard.php');
+    header('Location: ./dashboard/dashboard.php');
     exit;
 }
 
@@ -34,7 +34,7 @@ if (isset($_POST['login'])) {
             // $_SESSION['user_picture'] = $user['picture'];
             // print_r($_SESSION);
             // exit;
-            header('Location: dashboard.php');
+            header('Location: ./dashboard/dashboard.php');
             exit;
         } else {
             $_SESSION['error'] = 'Incorrect email or password!';
