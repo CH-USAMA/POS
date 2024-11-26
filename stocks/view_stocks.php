@@ -123,7 +123,7 @@ if (isset($_POST['Submit_Filter'])) {
                 <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
 
                     <th class="min-w-125px"> Product</th>
-                    <th class="min-w-125px"> Quantity </th>
+                    <th class="min-w-125px"> Produced </th>
                     <th class="min-w-125px">Sold</th>
                     <th class="min-w-125px">Delivered To</th>
                     <th class="min-w-125px">Date</th>
@@ -198,7 +198,7 @@ if (isset($_POST['Submit_Filter'])) {
                         <div class="col-md-6 mb-6">
                             <label class="required form-label">Shops</label>
                                 <select id="shop_id" name="shop_id"  class="form-select  form-select-solid" data-dropdown-parent="#stock_parent" data-control="select2">
-                                    <option disabled value="">Choose Shop</option>
+                                    <option  value="">Choose Shop</option>
 
                                         <?php
                                         
@@ -298,7 +298,7 @@ if (isset($_POST['Submit_Filter'])) {
                 },
                 {
                     className: "text-center",
-                    "targets": [2]
+                    "targets": [3]
                 },
 
             ],
@@ -353,24 +353,27 @@ if (isset($_POST['Submit_Filter'])) {
 
     var validator_edit = $('#edit_stock_form').validate({ // initialize the plugin
         rules: {
-            name: {
+            product_id: {
                 required: true,
             },
-            product_id: {
+            stock_qty: {
+                required: true,
+            },
+            stock_sold: {
                 required: true,
             }
 
         },
         messages: {
-            name: {
-                required: "<span class='text-danger'>Name is required</span>",
-            },
             product_id: {
-                required: "<span class='text-danger'>Category is required</span>",
+                required: "<span class='text-danger'>Product is required</span>",
+            },
+            stock_qty: {
+                required: "<span class='text-danger'>Quantity is required</span>",
+            },
+            stock_sold: {
+                required: "<span class='text-danger'>Quantity Sold is required</span>",
             }
-
-
-
         },
 
 

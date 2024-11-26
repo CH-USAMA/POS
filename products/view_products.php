@@ -170,7 +170,7 @@ if (isset($_POST['Submit_Filter'])) {
                         <div class="col-md-6 mb-6">
                             <label class="required form-label">Category</label>
                                 <select id="category_id" name="category_id" class="form-select form-select-solid" data-control="select2">
-                                    <option disabled value="">Choose Category</option>
+                                    <option  value="">Choose Category</option>
 
                                         <?php
                                         

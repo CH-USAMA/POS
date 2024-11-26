@@ -19,7 +19,7 @@ if (isset($_POST['action']) && $_POST['action'] == "fetch_products") {
 
 
     if (!empty($fromDate) && !empty($endDate)) {
-        $add_query = " AND (created_at BETWEEN '$fromDate' AND '$endDate') ";
+        $add_query = " AND (products.created_at BETWEEN '$fromDate' AND '$endDate') ";
     } else {
         $add_query = "";
     }

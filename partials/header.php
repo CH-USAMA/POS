@@ -141,6 +141,18 @@ if (!isset($_SESSION['user_id'])) {
 									
 								</div>
 								<!--end:Menu item-->
+
+								<!--begin:Menu item-->
+								<div class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+									<!--begin:Menu link-->
+									<span class="menu-link">
+										<a href="./sales/view_sales.php" class="menu-title">Sales</a>
+										<span class="menu-arrow d-lg-none"></span>
+									</span>
+									<!--end:Menu link-->
+									
+								</div>
+								<!--end:Menu item-->
 							
 							
 							
