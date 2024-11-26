@@ -117,8 +117,8 @@ This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for d
 
 ## **Contact**
 For any queries or suggestions:
-- **Email:** [yourname@example.com](mailto:usamamunawar15@gmail.com)
-- **GitHub:** [yourusername](https://github.com/CH-USAMA)
+- **Email:** [usamamunawar15@gmail.com](mailto:usamamunawar15@gmail.com)
+- **GitHub:** [CH-USAMA](https://github.com/CH-USAMA)
 
 ---
 
