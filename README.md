@@ -1,6 +1,4 @@
-Here's a **sample `README.md`** file for your GitHub project:
 
----
 
 # **Product and Sales Management System**
 
@@ -29,7 +27,10 @@ A complete CRUD-based web application for managing categories, products, and sal
 
 ### **5. Export Functionality**
 - Export categories, products, and sales data in various formats (CSV/Excel).
-  
+
+### **5. Server Side Rendering**
+- All tables are server side so ou don't have a system load.
+    
 ---
 
 ## **Tech Stack**
@@ -52,17 +53,18 @@ A complete CRUD-based web application for managing categories, products, and sal
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/yourusername/projectname.git
-   cd projectname
+   git clone [https://github.com/CH-USAMA/POS.git]
+   cd POS
    ```
 
 2. **Create MySQL Database:**
    ```sql
-   CREATE DATABASE sales_management;
+   CREATE DATABASE pos;
+   POS.sql in the database folder you can import it in your DB Server
    ```
 
 3. **Import Database Schema:**
-   Import the `database.sql` file (provided) into your MySQL server using phpMyAdmin or MySQL CLI.
+   Import the `POS.sql` file (provided) into your MySQL server using phpMyAdmin or MySQL CLI.
 
 4. **Configure Database Connection:**
    Update `config.php` with your database credentials:
@@ -70,13 +72,13 @@ A complete CRUD-based web application for managing categories, products, and sal
    define('DB_HOST', 'localhost');
    define('DB_USER', 'your_db_user');
    define('DB_PASS', 'your_db_password');
-   define('DB_NAME', 'sales_management');
+   define('DB_NAME', 'pos');
    ```
 
 5. **Start the Server:**
    Place the project in your web server's root directory (e.g., `htdocs` for XAMPP) and access it via:
    ```
-   http://localhost/projectname/
+   http://localhost/pos/
    ```
 
 ---
@@ -93,7 +95,10 @@ A complete CRUD-based web application for managing categories, products, and sal
 ---
 
 ## **Screenshots**
-*Include screenshots of key UI screens here.*
+![image](https://github.com/user-attachments/assets/bc7506e5-c2c8-4d9d-baac-7e69301b191e)
+![image](https://github.com/user-attachments/assets/6cccc6a9-f2aa-4e26-b408-7f98787d4a10)
+![image](https://github.com/user-attachments/assets/e66b8e94-fe20-4b64-ae63-357aa36fbf51)
+
 
 ---
 
